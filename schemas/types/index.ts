@@ -7,15 +7,21 @@ import homepageTextBlock from './homepage/text'
 import gallery from './gallery'
 import press from './press'
 import homepagePress from './homepage/press'
+import galleryImage from './galleryImage'
+import projectOrder from '../singleton/projectOrder'
+import jobs from './jobs'
 
 export default [
     customImage,
     gallery,
+    galleryImage,
     homeImageBlock,
     homepagePress,
     homepageTextBlock,
+    jobs,
     navigation,
     press,
+    projectOrder,
     tag,
     textEditor
 ]

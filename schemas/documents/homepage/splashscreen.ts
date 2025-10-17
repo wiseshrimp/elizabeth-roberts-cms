@@ -4,9 +4,34 @@ const splashscreen = {
     title: 'Splash Screen',
     fields: [
         {
-            name: 'image',
-            type: 'customImage'
-        }
+            type: 'array',
+            name: 'images',
+            of: [
+                {
+                    type: 'galleryImage',
+                    name: 'galleryItem'
+                }
+            ],
+        },
+            {
+                type: 'object',
+                name: 'ratio',
+                fields: [
+                    {
+                        type: 'number',
+                        name: 'y'
+                    },
+                    {
+                        type: 'number',
+                        name: 'x'
+                    },
+                ],
+                options: {
+                    collapsible: true,
+                    collapsed: true
+                },
+                hidden: true
+            }
     ],
     preview: {
         prepare() {

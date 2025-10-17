@@ -10,10 +10,26 @@ const customImage = defineType({
             type: 'image'
         },
         {
+            name: 'caption',
+            type: 'string'
+        },
+        {
             name: 'altText',
             type: 'string'
         }
-    ]
+    ],
+    preview: {
+        select: {
+            image: 'image',
+            title: 'Image'
+        },
+        prepare: (data) => {
+            return {
+                title: 'Image',
+                media: data.image
+            }
+        }
+    }
 })
 
 export default customImage

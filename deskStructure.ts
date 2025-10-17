@@ -10,58 +10,70 @@ const deskStructure = (S: StructureBuilder) =>
         .title('Homepage')
         .icon(() => '🏠')
         .child(
-          S.list()
-            .title('Homepage')
-            .items(
-              [
-                S.listItem()
-                  .id('SplashScreen')
-                  .title('Splash Screen')
-                  .showIcon(false)
-                  .child(
-                    S.editor()
-                      .title('Splash Screen')
-                      .id('splashscreen')
-                      .schemaType('splashscreen')
-                      .documentId('splashscreen')
-                  ),
-
-                S.listItem()
-                  .id('HomepageLayout')
-                  .title('Homepage Layout')
-                  .showIcon(false)
-                  .child(
-                    S.editor()
-                      .id('homepageLayout')
-                      .schemaType('homepageLayout')
-                      .documentId('homepageLayout')
-                  ),
-              ],
-              
-            )
+            S.editor()
+              .id('homepageLayout')
+              .title('Home')
+              .schemaType('homepageLayout')
+              .documentId('homepageLayout')
         ),
 
       // Projects
       S.listItem()
-        .id('Projects')
-        .title('Projects')
-        .icon(() => '🏠')
-        .schemaType('project')
+        .id('Architecture')
+        .title('Architecture')
+        .icon(() => '🌆')
         .child(
-          S.documentTypeList('project')
-            .title('Project')
+          S.list()
+            .title('Architecture')
+            .id('Architecture')
+            .items(
+              [
+                S.listItem()
+                  .title('Main Page')
+                  .child(
+                    S.editor()
+                      .title('Main Page')
+                      .id('ArchitecturePage')
+                      .schemaType('architecturePage')
+                      .documentId('architecturePage')
+                  ),
+                S.listItem()
+                .title('Projects')
+                .id('Projects')
+                .schemaType('project')
+                .child(
+                  S.documentTypeList('project')
+                    .title('Project')
+                ),
+                S.listItem()
+                  .title('Archive')
+                  .child(
+                    S.editor()
+                      .title('Archive Page')
+                      .id('ArchivePage')
+                      .schemaType('archivePage')
+                      .documentId('archivePage')
+                  ),
+              ]
+            )
         ),
 
       // Pages
-      S.listItem()
-        .id('pages')
-        .title('Pages')
-        .icon(() => '📄')
-        .schemaType('page')
-        .child(
-          S.documentTypeList('page')
-            .title('Pages')
-        ),
+      // S.listItem()
+      //   .id('pages')
+      //   .title('Pages')
+      //   .icon(() => '📄')
+      //   .schemaType('page')
+      //   .child(
+      //     S.editor()
+      //     .title('Architecture')
+      //     .id('architecture')
+      //     .documentId('architecture')
+      //     .schemaType('architectureLayout')
+
+      //     // S.documentTypeList('page')
+      //     //   .title('Pages')
+      //   ),
 
       // Settings
       S.listItem()
@@ -83,6 +95,28 @@ const deskStructure = (S: StructureBuilder) =>
                       .id('navigation')
                       .schemaType('navigation')
                       .documentId('navigation')
+                  ),
+                S.listItem()
+                  .id('Contact')
+                  .title('Contact')
+                  .showIcon(false)
+                  .child(
+                    S.editor()
+                      .title('Contact')
+                      .id('Contact')
+                      .schemaType('contactPage')
+                      .documentId('contactPage')
+                  ),
+                S.listItem()
+                  .id('Jobs')
+                  .title('Jobs')
+                  .showIcon(false)
+                  .child(
+                    S.editor()
+                      .title('Jobs')
+                      .id('job')
+                      .schemaType('jobs')
+                      .documentId('jobs')
                   ),
               ]
             )

@@ -1,9 +1,14 @@
-# Sanity Clean Content Studio
+# To Do
+- Fix Architecture Index and Project Page gallery – leads to compressing / stretching when resized. Change to an object fit of cover
 
-Congratulations, you have now installed the Sanity Content Studio, an open-source real-time content editing environment connected to the Sanity backend.
+- Add animations to components, e.g. the Expanded Navigation and transitions between pages. Using React CSS animations
 
-Now you can do the following things:
+- Add animation to top navigation
 
-- [Read “getting started” in the docs](https://www.sanity.io/docs/introduction/getting-started?utm_source=readme)
-- [Join the Sanity community](https://www.sanity.io/community/join?utm_source=readme)
-- [Extend and build plugins](https://www.sanity.io/docs/content-studio/extending?utm_source=readme)
+- Pages to make
+    - Archive
+    - Contact Us
+    - Expandded Navigation styling
+    - Objects
+    - Object Page
+    - About Page

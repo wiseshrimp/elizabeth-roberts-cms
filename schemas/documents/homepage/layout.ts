@@ -7,6 +7,11 @@ const homepageLayout = defineType({
   type: "document",
   fields: [
     defineField({
+      name: 'splashscreen',
+      title: 'Splash Screen Images',
+      type: 'splashscreen'
+    }),
+    defineField({
       name: "modules",
       title: "Content Modules",
       type: "array",
@@ -21,6 +26,11 @@ const homepageLayout = defineType({
   ],
   preview: {
     select: { title: "Homepage Layout" },
+    prepare() {
+      return {
+        title: 'Homepage Layout'
+      }
+    }
   },
 })
 

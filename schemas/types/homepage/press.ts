@@ -1,6 +1,9 @@
+import { FaRegNewspaper } from "react-icons/fa";
+
 const homepagePress = {
     name: 'homepagePress',
     type: 'object',
+    icon: () => '📰',
     fields: [
         {
             type: 'array',
@@ -12,7 +15,14 @@ const homepagePress = {
                 }
             ]
         }
-    ]
+    ],
+    preview: {
+        prepare() {
+            return {
+                title: 'Press Gallery',
+            }
+        }
+    }
 }
 
 export default homepagePress
