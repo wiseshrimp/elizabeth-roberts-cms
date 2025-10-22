@@ -4,6 +4,9 @@ import {visionTool} from '@sanity/vision'
 import types from './schemas'
 import deskStructure from './deskStructure'
 import getPreviewUrl from './helpers/getPreviewUrl'
+// sanity.config.ts
+import { PreviewDraftAction } from './actions/getDraft'
+import SLUGS from './constants/slugs'
 
 const {theme} = (await import(
   'https://themer.sanity.build/api/hues?preset=tw-cyan&default=7a7a7a;darkest:1c1b1d&primary=3f90a6&transparent=darkest:4c4f57'
@@ -27,14 +30,28 @@ export default defineConfig({
     productionUrl: async (prev, context) => {
       return getPreviewUrl(context.document as any)
     },
-    actions: (prev: any, context: any) => {
-      console.log(prev)
-      return prev
-      // prev = prev.map((original: any) => 
-      //   original.action === 'publish' ? onPublish(original) : original
-      // )
-      // return context.schemaType === 'broadcastLayout' ? [...prev, BroadcastAudioPreview, BroadcastVideoPreview] : prev
-    } 
+    actions: (prev, context) => {
+      // Insert PreviewDraftAction right before the publish action
+      const out: typeof prev = []
+      let inserted = false
+
+      for (const action of prev) {
+        if (!inserted && action.action === 'publish') {
+          out.push(PreviewDraftAction)
+          inserted = true
+        }
+        out.push(action)
+      }
+
+      // Only show for certain types? uncomment:
+      // if (context.schemaType !== 'article') return prev
+
+      if (!SLUGS[context?.schemaType as keyof typeof SLUGS]) {
+        return prev
+      }
+      
+      return out
+    },
   },
 
   schema: {

@@ -1,5 +1,6 @@
 // schemas/page.ts
 import { defineType, defineField, defineArrayMember } from "sanity"
+import { InfoText } from "../../../components/InfoText"
 
 const homepageLayout = defineType({
   name: "homepageLayout",
@@ -7,13 +8,22 @@ const homepageLayout = defineType({
   type: "document",
   fields: [
     defineField({
+      name: "info",
+      type: "string",
+      components: {
+        field: InfoText
+      },
+      readOnly: true
+    }),
+    
+    defineField({
       name: 'splashscreen',
-      title: 'Splash Screen Images',
+      title: 'Splash Screen',
       type: 'splashscreen'
     }),
     defineField({
       name: "modules",
-      title: "Content Modules",
+      title: "Home Page",
       type: "array",
       of: [
         defineArrayMember({ type: "homeImageBlock" }),

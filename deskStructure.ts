@@ -30,6 +30,7 @@ const deskStructure = (S: StructureBuilder) =>
               [
                 S.listItem()
                   .title('Main Page')
+                  .showIcon(false)
                   .child(
                     S.editor()
                       .title('Main Page')
@@ -40,6 +41,7 @@ const deskStructure = (S: StructureBuilder) =>
                 S.listItem()
                 .title('Projects')
                 .id('Projects')
+                .showIcon(false)
                 .schemaType('project')
                 .child(
                   S.documentTypeList('project')
@@ -47,6 +49,7 @@ const deskStructure = (S: StructureBuilder) =>
                 ),
                 S.listItem()
                   .title('Archive')
+                  .showIcon(false)
                   .child(
                     S.editor()
                       .title('Archive Page')
@@ -57,23 +60,37 @@ const deskStructure = (S: StructureBuilder) =>
               ]
             )
         ),
-
-      // Pages
-      // S.listItem()
-      //   .id('pages')
-      //   .title('Pages')
-      //   .icon(() => '📄')
-      //   .schemaType('page')
-      //   .child(
-      //     S.editor()
-      //     .title('Architecture')
-      //     .id('architecture')
-      //     .documentId('architecture')
-      //     .schemaType('architectureLayout')
-
-      //     // S.documentTypeList('page')
-      //     //   .title('Pages')
-      //   ),
+      S.listItem()
+        .id('Object')
+        .title('Objects')
+        .icon(() => '🪑')
+        .child(
+          S.list()
+            .title('Objects')
+            .id('Object')
+            .showIcons(false)
+            .items(
+              [
+                S.listItem()
+                  .title('Main Page')
+                  .child(
+                    S.editor()
+                      .title('Main Page')
+                      .id('ObjectPage')
+                      .schemaType('objectPage')
+                      .documentId('objectPage')
+                  ),
+                S.listItem()
+                .title('Objects')
+                .id('Objects')
+                .schemaType('objectItem')
+                .child(
+                  S.documentTypeList('objectItem')
+                    .title('Object')
+                )
+              ]
+            )
+        ),
 
       // Settings
       S.listItem()
@@ -106,6 +123,17 @@ const deskStructure = (S: StructureBuilder) =>
                       .id('Contact')
                       .schemaType('contactPage')
                       .documentId('contactPage')
+                  ),
+                S.listItem()
+                  .id('Studio')
+                  .title('Studio')
+                  .showIcon(false)
+                  .child(
+                    S.editor()
+                      .title('Studio')
+                      .id('studio')
+                      .schemaType('studioPage')
+                      .documentId('studioPage')
                   ),
                 S.listItem()
                   .id('Jobs')

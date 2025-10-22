@@ -14,6 +14,11 @@ const homepagePress = {
                     name: 'pressItem'
                 }
             ]
+        },
+        {
+            type: 'number',
+            name: 'speed',
+            description: 'Speed of press marquee. Increase number to make marquee move more slowly.'
         }
     ],
     preview: {

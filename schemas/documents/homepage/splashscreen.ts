@@ -1,3 +1,5 @@
+import { FaRegNewspaper } from "react-icons/fa";
+
 const splashscreen = {
     type: 'document',
     name: 'splashscreen',
@@ -12,6 +14,11 @@ const splashscreen = {
                     name: 'galleryItem'
                 }
             ],
+        },
+        {
+            type: 'number',
+            name: 'speed',
+            description: 'Time (seconds) before the next slideshow image appears. Increase number if you want the splash screen slideshow to go more slowly.'
         },
             {
                 type: 'object',

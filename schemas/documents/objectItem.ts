@@ -2,9 +2,9 @@ import { defineType, defineField } from 'sanity'
 import TagInput from '../../components/TagInput'
 import slug from '../reusables/slug'
 
-const project = defineType({
-  name: 'project',
-  title: 'Project',
+const objectItem = defineType({
+  name: 'objectItem',
+  title: 'Object',
   type: 'document',
   fields: [
     {
@@ -19,28 +19,9 @@ const project = defineType({
     },
     slug,
     {
-      name: 'projectType',
-  title: 'Project Type',
-  type: 'array',
-  of: [{ type: 'string' }],
-  options: {
-    // Provide allowed values; Studio renders them as a multi-select checklist
-    list: [
-      {title: 'Residential', value: 'residential'},
-      {title: 'Cultural', value: 'cultural'},
-      {title: 'Commercial', value: 'commercial'},
-      {title: 'New Build', value: 'new-build'},
-    ],
-    layout: 'grid', // checklist UI (use 'tags' if you prefer tag chips)
-    },
-  },
-    {
-      name: 'year',
-      type: 'string'
-    },
-    {
-      name: 'location',
-      type: 'string'
+      name: 'shortDescription',
+      type: 'textEditor',
+      description: 'Description that shows up in the objects gallery page. If left empty, description will default to the longer one below.'
     },
     {
       name: 'description',
@@ -83,26 +64,6 @@ const project = defineType({
         },
       ],
     },
-
-    {
-      name: 'tags',
-      title: 'Tags',
-      type: 'array',
-      of: [
-        {
-          type: 'reference',
-          to: [{ type: 'tag' }],
-          options: {
-            filter: ''
-          }
-        }
-      ],
-      hidden: true,
-
-      components: {
-        input: TagInput
-      }
-    }
   ],
   preview: {
     select: {
@@ -118,4 +79,4 @@ const project = defineType({
   }
 })
 
-export default project
+export default objectItem

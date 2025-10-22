@@ -7,8 +7,8 @@ const galleryImage = defineType({
     fields: [
         {
             name: 'projectReference',
+            description: "Optional – Adding a project reference will automatically load the project's main image as the gallery image and link to the project's page. If you want to add a custom image or link, add below.",
             type: 'reference',
-            description: "Optional – Adding a project reference will automatically load the project's main image as the gallery image and link to the project's page. If you don't want to link the gallery image, upload manually an image below and leave the URL field empty.",
             to: [
                 { type: 'project' }
             ],
@@ -17,14 +17,6 @@ const galleryImage = defineType({
         {
             name: 'image',
             type: 'image'
-        },
-        {
-            name: 'caption',
-            type: 'string'
-        },
-        {
-            name: 'altText',
-            type: 'string'
         },
         {
             name: 'link',
