@@ -1,3 +1,5 @@
+import './style/studio.scss'
+
 import {defineConfig} from 'sanity'
 import {structureTool} from 'sanity/structure'
 import {visionTool} from '@sanity/vision'
@@ -18,6 +20,7 @@ export default defineConfig({
 
   projectId: 'i9b4x4a0',
   dataset: 'production',
+  basePath: '/',
 
   plugins: [
     visionTool(),

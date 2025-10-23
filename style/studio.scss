@@ -1,0 +1,11 @@
+@font-face {
+  font-family: "Untitled Sans";
+  src: url("/fonts/UntitledSans-Regular.otf") format("opentype");
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+
+[data-ui] {
+  font-family: "Untitled Sans", system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, sans-serif !important;
+}

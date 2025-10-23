@@ -24,8 +24,8 @@ const homeImageBlock = {
             title: "Size",
             options: {
                 list: [
-                    { title: "Full", value: "full" },
-                    { title: "3/4", value: "partial" },
+                    { title: "Full Screen Width", value: "full" },
+                    { title: "3/4 Screen Width", value: "partial" },
                 ],
                 layout: "dropdown", // 👈 this makes it a dropdown (instead of radios)
             },

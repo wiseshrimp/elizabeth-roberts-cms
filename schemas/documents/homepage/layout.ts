@@ -23,7 +23,7 @@ const homepageLayout = defineType({
     }),
     defineField({
       name: "modules",
-      title: "Home Page",
+      title: "Home Page Modules",
       type: "array",
       of: [
         defineArrayMember({ type: "homeImageBlock" }),
