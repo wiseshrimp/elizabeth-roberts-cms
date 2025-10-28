@@ -17,6 +17,10 @@ const studioPage = {
         {
             type: 'object',
             name: 'team',
+            options: {
+                collapsible: true,
+                collapsed: true
+            },
             fields: [
                 {
                     type: 'string',
@@ -58,16 +62,16 @@ const studioPage = {
                                     type: 'object',
                                     name: 'employee',
                                     fields:
-                                    [
-                                        {
-                                            type: 'string',
-                                            name: 'name'
-                                        },
-                                        {
-                                            type: 'customImage',
-                                            name: 'employeeImage'
-                                        }
-                                    ]
+                                        [
+                                            {
+                                                type: 'string',
+                                                name: 'name'
+                                            },
+                                            {
+                                                type: 'customImage',
+                                                name: 'employeeImage'
+                                            }
+                                        ]
                                 }
                             ]
                         },
@@ -78,6 +82,53 @@ const studioPage = {
                     ]
                 }
             ]
+        },
+        {
+            name: 'studioImageGallery',
+            title: 'Image Gallery',
+            type: 'array',
+            of: [
+                {
+                    type: 'customImage',
+                    name: 'studioImage'
+                }
+            ]
+        },
+        {
+            name: 'press',
+            type: 'array',
+            of: [
+                {
+                    type: 'object',
+                    name: 'pressItem',
+                    fields: [
+                        {
+                            type: 'image',
+                            name: 'logo'
+                        },
+                        {
+                            type: 'textEditor',
+                            name: 'text'
+                        },
+                        {
+                            type: 'url',
+                            name: 'link'
+                        }
+                    ],
+                    preview: {
+                        select: {
+                            image: 'logo'
+                        },
+                        prepare: (preview: any) => {
+                            return {
+                                title: 'Press',
+                                media: preview.image
+                            }
+                        }
+                    }
+
+                }
+            ],
         }
     ]
 }
