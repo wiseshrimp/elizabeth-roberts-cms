@@ -6,7 +6,7 @@ import SLUGS from '../constants/slugs'
 
 export const PreviewDraftAction: DocumentActionComponent = (props) => {
   const hasDraft = !!props.draft
-  const base = process.env.NODE_ENV == 'development' ? 'http://localhost:3000' : 'https://elizabethroberts.com'
+  const base = process.env.NODE_ENV == 'development' ? 'http://localhost:3000' : 'https://era-cms.netlify.app'
 
   if (!hasDraft) {
     return null
