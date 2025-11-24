@@ -45,12 +45,10 @@ const project = defineType({
     {
       name: 'year',
       type: 'string',
-      hidden: true
     },
     {
       name: 'location',
       type: 'string',
-      hidden: true
     },
     {
       name: 'description',

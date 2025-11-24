@@ -40,6 +40,8 @@ const homepageLayout = defineType({
         defineArrayMember({ type: "homepageTextBlock" }),
         defineArrayMember({ type: "gallery" }),
         defineArrayMember({ type: "homepagePress", title: 'Press' }),
+        defineArrayMember({ type: "videoBlock", title: 'Video' }),
+
       ],
       validation: r => r.min(0),
     }),

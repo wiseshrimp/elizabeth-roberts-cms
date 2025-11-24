@@ -11,6 +11,7 @@ import galleryImage from './galleryImage'
 import projectOrder from '../singleton/projectOrder'
 import jobs from './jobs'
 import projectsSettings from './projectsSettings'
+import videoBlock from './homepage/video'
 
 export default [
     customImage,
@@ -25,5 +26,6 @@ export default [
     projectOrder,
     projectsSettings,
     // tag,
-    textEditor
+    textEditor,
+    videoBlock
 ]
