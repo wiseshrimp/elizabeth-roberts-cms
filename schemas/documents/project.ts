@@ -35,16 +35,31 @@ const project = defineType({
     },
   },
     {
+      name: 'tags',
+      title: 'Tags',
+      type: 'tags',
+      options: {
+        includeFromRelated: 'tags'
+      }
+    },
+    {
       name: 'year',
-      type: 'string'
+      type: 'string',
+      hidden: true
     },
     {
       name: 'location',
-      type: 'string'
+      type: 'string',
+      hidden: true
     },
     {
       name: 'description',
       type: 'textEditor'
+    },
+    {
+      name: 'snippet',
+      description: 'Short description for project that appears on the Projects page',
+      type: 'string'
     },
     {
       name: 'gallery',
@@ -83,26 +98,6 @@ const project = defineType({
         },
       ],
     },
-
-    {
-      name: 'tags',
-      title: 'Tags',
-      type: 'array',
-      of: [
-        {
-          type: 'reference',
-          to: [{ type: 'tag' }],
-          options: {
-            filter: ''
-          }
-        }
-      ],
-      hidden: true,
-
-      components: {
-        input: TagInput
-      }
-    }
   ],
   preview: {
     select: {

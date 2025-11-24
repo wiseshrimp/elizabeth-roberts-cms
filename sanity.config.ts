@@ -6,6 +6,8 @@ import {visionTool} from '@sanity/vision'
 import types from './schemas'
 import deskStructure from './deskStructure'
 import getPreviewUrl from './helpers/getPreviewUrl'
+import {tags} from 'sanity-plugin-tags-v4'
+
 // sanity.config.ts
 import { PreviewDraftAction } from './actions/getDraft'
 import SLUGS from './constants/slugs'
@@ -24,6 +26,7 @@ export default defineConfig({
 
   plugins: [
     visionTool(),
+    tags({}),
     structureTool({
       structure: S => deskStructure(S) as any,
     })

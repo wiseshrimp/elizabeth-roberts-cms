@@ -4,6 +4,7 @@ const homeImageBlock = {
     name: 'homeImageBlock',
     title: 'Image Block',
     type: 'object',
+    icon: () => '🖼️',
     fields: [
         {
             name: "image",

@@ -10,6 +10,7 @@ import homepagePress from './homepage/press'
 import galleryImage from './galleryImage'
 import projectOrder from '../singleton/projectOrder'
 import jobs from './jobs'
+import projectsSettings from './projectsSettings'
 
 export default [
     customImage,
@@ -22,6 +23,7 @@ export default [
     navigation,
     press,
     projectOrder,
-    tag,
+    projectsSettings,
+    // tag,
     textEditor
 ]

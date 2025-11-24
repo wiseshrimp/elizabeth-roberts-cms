@@ -19,13 +19,13 @@ const deskStructure = (S: StructureBuilder) =>
 
       // Projects
       S.listItem()
-        .id('Architecture')
-        .title('Architecture')
+        .id('Projects')
+        .title('Projects')
         .icon(() => '🌆')
         .child(
           S.list()
-            .title('Architecture')
-            .id('Architecture')
+            .title('Projects')
+            .id('Projects')
             .items(
               [
                 S.listItem()
@@ -34,9 +34,9 @@ const deskStructure = (S: StructureBuilder) =>
                   .child(
                     S.editor()
                       .title('Main Page')
-                      .id('ArchitecturePage')
-                      .schemaType('architecturePage')
-                      .documentId('architecturePage')
+                      .id('ProjectsPage')
+                      .schemaType('projectsPage')
+                      .documentId('projectsPage')
                   ),
                 S.listItem()
                 .title('Projects')
@@ -48,15 +48,26 @@ const deskStructure = (S: StructureBuilder) =>
                     .title('Project')
                 ),
                 S.listItem()
-                  .title('Archive')
-                  .showIcon(false)
-                  .child(
-                    S.editor()
-                      .title('Archive Page')
-                      .id('ArchivePage')
-                      .schemaType('archivePage')
-                      .documentId('archivePage')
-                  ),
+                .title('Settings')
+                .id('projectSettings')
+                .showIcon(false)
+                .child(
+                  S.editor()
+                  .title('Project Settings')
+                  .id('projectsSettings')
+                  .schemaType('projectsSettingsDocument')
+
+                )
+                // S.listItem()
+                //   .title('Archive')
+                //   .showIcon(false)
+                //   .child(
+                //     S.editor()
+                //       .title('Archive Page')
+                //       .id('ArchivePage')
+                //       .schemaType('archivePage')
+                //       .documentId('archivePage')
+                //   ),
               ]
             )
         ),
@@ -91,6 +102,29 @@ const deskStructure = (S: StructureBuilder) =>
               ]
             )
         ),
+        S.listItem()
+          .id('Contact')
+          .title('Contact')
+          .icon(() => '☎️')
+          .child(
+            S.editor()
+              .title('Contact')
+              .id('Contact')
+              .schemaType('contactPage')
+              .documentId('contactPage')
+          ),
+        S.listItem()
+          .id('Studio')
+          .title('Studio')
+          .icon(() => '👤')
+
+          .child(
+            S.editor()
+              .title('Studio')
+              .id('studio')
+              .schemaType('studioPage')
+              .documentId('studioPage')
+          ),
 
       // Settings
       S.listItem()
@@ -112,28 +146,6 @@ const deskStructure = (S: StructureBuilder) =>
                       .id('navigation')
                       .schemaType('navigation')
                       .documentId('navigation')
-                  ),
-                S.listItem()
-                  .id('Contact')
-                  .title('Contact')
-                  .showIcon(false)
-                  .child(
-                    S.editor()
-                      .title('Contact')
-                      .id('Contact')
-                      .schemaType('contactPage')
-                      .documentId('contactPage')
-                  ),
-                S.listItem()
-                  .id('Studio')
-                  .title('Studio')
-                  .showIcon(false)
-                  .child(
-                    S.editor()
-                      .title('Studio')
-                      .id('studio')
-                      .schemaType('studioPage')
-                      .documentId('studioPage')
                   ),
                 S.listItem()
                   .id('Jobs')

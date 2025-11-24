@@ -11,6 +11,9 @@ const tag = {
       title: 'Tag Name',
     },
   ],
+      components: {
+        field: TagInput
+      },
   preview: {
     select: {
       title: 'title',

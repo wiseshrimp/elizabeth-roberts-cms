@@ -1,10 +1,10 @@
 const SLUGS = {
     project: {
-        type: 'architecture/project',
+        type: 'projects/project',
         slug: true
     },
-    architecturePage: {
-        type: 'architecture',
+    projectPage: {
+        type: 'projects',
         slug: false
     },
     archivePage: {
