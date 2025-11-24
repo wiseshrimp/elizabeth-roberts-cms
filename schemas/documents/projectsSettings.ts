@@ -9,7 +9,14 @@ const projectSettingsDocument = defineType({
         name: 'projectSettings',
         type: 'projectsSettings'
     }
-  ]
+  ],
+  preview: {
+    prepare() {
+        return {
+            title: 'Project Settings'
+        }
+    }
+  }
 })
 
 export default projectSettingsDocument

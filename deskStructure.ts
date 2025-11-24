@@ -53,7 +53,6 @@ const deskStructure = (S: StructureBuilder) =>
                 .showIcon(false)
                 .child(
                   S.editor()
-                  .title('Project Settings')
                   .id('projectsSettings')
                   .schemaType('projectsSettingsDocument')
 

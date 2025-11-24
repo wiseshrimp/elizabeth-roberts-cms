@@ -2,12 +2,8 @@ const projectsSettings = {
     name: 'projectsSettings',
     type: 'document',
     title: 'Project Settings',
-    __experimental_formPreviewTitle: false,
+    description: 'Filter settings that show up on /projects and /archive',
     fields: [
-        {
-            name: 'title',
-            type: 'string'
-        },
         {
             name: 'showProjectTypes',
             type: 'boolean',
@@ -24,16 +20,8 @@ const projectsSettings = {
             ]
         },
     ],
-    options: {
-        __experimental_formPreviewTitle: false
-    },
-    preview: {
-        prepare() {
-            return {
-                title: 'Project Settings'
-            }
-        }
-    }
+
+
 }
 
 export default projectsSettings
