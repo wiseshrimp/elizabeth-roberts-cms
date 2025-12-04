@@ -94,6 +94,17 @@ const project = defineType({
             }
           }
         },
+        {
+          type: 'file',
+          name: 'video',
+          preview: {
+            prepare: () => {
+              return {
+                title: 'Video'
+              }
+            }
+          }
+        }
       ],
     },
   ],

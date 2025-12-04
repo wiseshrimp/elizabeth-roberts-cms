@@ -7,6 +7,10 @@ const videoBlock = {
         {
             type: 'file',
             name: 'videoFile'
+        },
+        {
+            type: 'url',
+            name: 'link'
         }
     ],
     preview: {

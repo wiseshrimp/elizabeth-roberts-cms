@@ -9,6 +9,20 @@ const reusable = {
         {
             type: 'string',
             name: 'link'
+        },
+        {
+            type: 'string',
+            name: 'showFeatured',
+            title: 'Show Featured of Type',
+            description: 'Selecting an option will show the featured projects or objects in the navigation bar when hovering over the navigation item',
+            options: {
+                layout: "dropdown", 
+                list: [
+                    {title: 'None', value: 'none'},
+                    {title: 'Projects', value: 'projects'},
+                    {title: 'Objects', value: 'objects'}
+                ],
+            }
         }
     ]
 }

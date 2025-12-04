@@ -7,6 +7,11 @@ const studioPage = {
             name: 'mainImage'
         },
         {
+            type: 'file',
+            name: 'mainVideo',
+            description: 'Uploading a video will replace the main image.'
+        },
+        {
             type: 'string',
             name: 'title'
         },

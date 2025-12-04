@@ -28,6 +28,11 @@ const galleryImage = defineType({
             type: 'image'
         },
         {
+            name: 'video',
+            type: 'file',
+            description: 'Uploading a video will autoplay and mute the video'
+        },
+        {
             name: 'link',
             type: 'url'
         }
