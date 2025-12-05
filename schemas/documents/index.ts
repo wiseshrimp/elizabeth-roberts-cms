@@ -9,12 +9,14 @@ import objectItem from "./objectItem"
 import objectPage from "./pages/objects"
 import studioPage from "./pages/studio"
 import projectSettingsDocument from "./projectsSettings"
+import jobPage from "./job"
 
 export default [
     projectsPage,
     archivePage,
     contactPage,
     homepageLayout,
+    jobPage,
     objectItem,
     objectPage,
     page,

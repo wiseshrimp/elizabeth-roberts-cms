@@ -12,9 +12,11 @@ import projectOrder from '../singleton/projectOrder'
 import jobs from './jobs'
 import projectsSettings from './projectsSettings'
 import videoBlock from './homepage/video'
+import embed from './embed'
 
 export default [
     customImage,
+    embed,
     gallery,
     galleryImage,
     homeImageBlock,

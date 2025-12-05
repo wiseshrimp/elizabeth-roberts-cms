@@ -9,10 +9,19 @@ const textEditor = defineType({
             marks: {
                 decorators: [
                     {
-                        title: 'Bold', value: 'strong'
-                    }
+                        title: 'Bold', value: 'strong',
+                    },
+                    {
+                        title: 'Italic', value: 'em'
+                    },
+                    {
+                        title: 'Underline', value: 'underline'
+                    },
                 ]
             }
+        },
+        {
+            type: 'embed'
         }
     ]
 })

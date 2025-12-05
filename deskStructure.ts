@@ -118,11 +118,30 @@ const deskStructure = (S: StructureBuilder) =>
           .icon(() => '👤')
 
           .child(
-            S.editor()
-              .title('Studio')
-              .id('studio')
-              .schemaType('studioPage')
-              .documentId('studioPage')
+            S.list()
+            .title('Studio')
+            .items(
+              [
+                S.listItem()
+                  .id('studio')
+                  .title('Studio')
+                  .showIcon(false)
+                  .child(
+                  S.editor()
+                    .title('Studio')
+                    .schemaType('studioPage')
+                    .documentId('studioPage'),
+                ),
+                S.listItem()
+                  .id('Jobs')
+                  .title('Jobs')
+                  .showIcon(false)
+                  .child(
+                    S.documentTypeList('jobPage')
+                      .title('Jobs')
+                  )
+              ]
+            )
           ),
 
       // Settings
@@ -145,18 +164,7 @@ const deskStructure = (S: StructureBuilder) =>
                       .id('navigation')
                       .schemaType('navigation')
                       .documentId('navigation')
-                  ),
-                S.listItem()
-                  .id('Jobs')
-                  .title('Jobs')
-                  .showIcon(false)
-                  .child(
-                    S.editor()
-                      .title('Jobs')
-                      .id('job')
-                      .schemaType('jobs')
-                      .documentId('jobs')
-                  ),
+                  )
               ]
             )
         )
