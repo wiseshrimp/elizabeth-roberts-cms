@@ -7,6 +7,11 @@ const contactPage = {
             type: 'customImage'
         },
         {
+            name: 'mainVideo',
+            type: 'file',
+            description: 'Uploading a video will replace the main image on the Contact page.'
+        },
+        {
             type: 'array',
             name: 'addresses',
             of: [
