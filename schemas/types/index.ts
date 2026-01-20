@@ -13,21 +13,25 @@ import jobs from './jobs'
 import projectsSettings from './projectsSettings'
 import videoBlock from './homepage/video'
 import embed from './embed'
+import pressItem from './pressItem'
+import video from './video'
 
 export default [
-    customImage,
-    embed,
-    gallery,
-    galleryImage,
-    homeImageBlock,
-    homepagePress,
-    homepageTextBlock,
-    jobs,
-    navigation,
-    press,
-    projectOrder,
-    projectsSettings,
-    // tag,
-    textEditor,
-    videoBlock
+  customImage,
+  embed,
+  gallery,
+  galleryImage,
+  homeImageBlock,
+  homepagePress,
+  homepageTextBlock,
+  jobs,
+  navigation,
+  press,
+  pressItem, // For text editor
+  projectOrder,
+  projectsSettings,
+  // tag,
+  textEditor,
+  video,
+  videoBlock,
 ]
