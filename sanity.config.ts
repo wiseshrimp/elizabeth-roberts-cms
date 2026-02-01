@@ -9,12 +9,13 @@ import getPreviewUrl from './helpers/getPreviewUrl'
 import {tags} from 'sanity-plugin-tags-v4'
 
 // sanity.config.ts
-import { PreviewDraftAction } from './actions/getDraft'
+import {PreviewDraftAction, PreviewPublishedAction} from './actions/getDraft'
 import SLUGS from './constants/slugs'
 
-const {theme} = (await import(
-  'https://themer.sanity.build/api/hues?preset=tw-cyan&default=7a7a7a;darkest:1c1b1d&primary=3f90a6&transparent=darkest:4c4f57'
-)) as {theme: import('sanity').StudioTheme}
+const {theme} =
+  (await import('https://themer.sanity.build/api/hues?preset=tw-cyan&default=7a7a7a;darkest:1c1b1d&primary=3f90a6&transparent=darkest:4c4f57')) as {
+    theme: import('sanity').StudioTheme
+  }
 
 export default defineConfig({
   name: 'default',
@@ -28,8 +29,8 @@ export default defineConfig({
     visionTool(),
     tags({}),
     structureTool({
-      structure: S => deskStructure(S) as any,
-    })
+      structure: (S) => deskStructure(S) as any,
+    }),
   ],
 
   document: {
@@ -37,25 +38,28 @@ export default defineConfig({
       return getPreviewUrl(context.document as any)
     },
     actions: (prev, context) => {
-      // Insert PreviewDraftAction right before the publish action
+      // Only show for certain types with slugs
+      if (!SLUGS[context?.schemaType as keyof typeof SLUGS]) {
+        return prev
+      }
+
+      // Insert PreviewDraftAction and PreviewPublishedAction right before the publish action
       const out: typeof prev = []
-      let inserted = false
+      let insertedDraft = false
+      let insertedPublished = false
 
       for (const action of prev) {
-        if (!inserted && action.action === 'publish') {
+        if (!insertedDraft && action.action === 'publish') {
           out.push(PreviewDraftAction)
-          inserted = true
+          insertedDraft = true
+        }
+        if (!insertedPublished && action.action === 'publish') {
+          out.push(PreviewPublishedAction)
+          insertedPublished = true
         }
         out.push(action)
       }
 
-      // Only show for certain types? uncomment:
-      // if (context.schemaType !== 'article') return prev
-
-      if (!SLUGS[context?.schemaType as keyof typeof SLUGS]) {
-        return prev
-      }
-      
       return out
     },
   },
@@ -63,5 +67,5 @@ export default defineConfig({
   schema: {
     types,
   },
-  theme
+  theme,
 })
