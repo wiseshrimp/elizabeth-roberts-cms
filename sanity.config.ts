@@ -9,7 +9,7 @@ import getPreviewUrl from './helpers/getPreviewUrl'
 import {tags} from 'sanity-plugin-tags-v4'
 
 // sanity.config.ts
-import {PreviewDraftAction, PreviewPublishedAction} from './actions/getDraft'
+import {PreviewDraftAction, PreviewPublishedAction, UnpublishAction} from './actions/getDraft'
 import SLUGS from './constants/slugs'
 
 const {theme} =
@@ -43,10 +43,11 @@ export default defineConfig({
         return prev
       }
 
-      // Insert PreviewDraftAction and PreviewPublishedAction right before the publish action
+      // Insert custom actions right before the publish action
       const out: typeof prev = []
       let insertedDraft = false
       let insertedPublished = false
+      let insertedUnpublish = false
 
       for (const action of prev) {
         if (!insertedDraft && action.action === 'publish') {
@@ -56,6 +57,10 @@ export default defineConfig({
         if (!insertedPublished && action.action === 'publish') {
           out.push(PreviewPublishedAction)
           insertedPublished = true
+        }
+        if (!insertedUnpublish && action.action === 'unpublish') {
+          out.push(UnpublishAction)
+          insertedUnpublish = true
         }
         out.push(action)
       }

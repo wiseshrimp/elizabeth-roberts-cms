@@ -1,7 +1,8 @@
 // actions/previewDraft.ts
 import type {DocumentActionComponent} from 'sanity'
+import {useClient} from 'sanity'
 // optional icon
-import {EyeOpenIcon, EarthGlobeIcon} from '@sanity/icons'
+import {EyeOpenIcon, EarthGlobeIcon, RevertIcon} from '@sanity/icons'
 import SLUGS from '../constants/slugs'
 
 export const PreviewDraftAction: DocumentActionComponent = (props) => {
@@ -46,6 +47,39 @@ export const PreviewPublishedAction: DocumentActionComponent = (props) => {
       const url = `${base}/${entry?.type}`
       window.open(url, '_blank', 'noopener,noreferrer')
       props.onComplete()
+    },
+  }
+}
+
+export const UnpublishAction: DocumentActionComponent = (props) => {
+  const hasPublished = !!props.published
+  const client = useClient({apiVersion: '2024-01-01'})
+
+  // Only show if there's a published version
+  if (!hasPublished) {
+    return null
+  }
+
+  return {
+    label: 'Unpublish',
+    icon: RevertIcon,
+    title: 'Unpublish this document (remove from live site)',
+    tone: 'critical',
+    onHandle: async () => {
+      const confirmed = window.confirm(
+        'Are you sure you want to unpublish this document? It will be removed from the live site but kept as a draft.',
+      )
+
+      if (confirmed) {
+        try {
+          // Delete the published version (the document without the 'drafts.' prefix)
+          await client.delete(props.id)
+          // The draft version (drafts.{id}) will remain
+        } catch (error) {
+          console.error('Error unpublishing document:', error)
+          alert('Failed to unpublish document. Please try again.')
+        }
+      }
     },
   }
 }
