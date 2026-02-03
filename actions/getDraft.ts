@@ -34,7 +34,7 @@ export const PreviewPublishedAction: DocumentActionComponent = (props) => {
   const base =
     process.env.NODE_ENV == 'development'
       ? 'http://localhost:3000'
-      : 'https://elizaberthroberts.netlify.app'
+      : 'https://elizabethroberts.netlify.app'
 
   if (!hasPublished) {
     return null
