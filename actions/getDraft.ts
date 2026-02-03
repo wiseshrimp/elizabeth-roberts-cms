@@ -32,7 +32,9 @@ export const PreviewDraftAction: DocumentActionComponent = (props) => {
 export const PreviewPublishedAction: DocumentActionComponent = (props) => {
   const hasPublished = !!props.published
   const base =
-    process.env.NODE_ENV == 'development' ? 'http://localhost:3000' : 'https://era-cms.netlify.app'
+    process.env.NODE_ENV == 'development'
+      ? 'http://localhost:3000'
+      : 'https://elizaberthroberts.netlify.app'
 
   if (!hasPublished) {
     return null
