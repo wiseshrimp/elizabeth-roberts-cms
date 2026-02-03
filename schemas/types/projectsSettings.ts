@@ -14,6 +14,7 @@ const projectsSettings = {
       name: 'filters',
       title: 'Filters',
       type: 'array',
+      hidden: true,
       of: [
         {
           type: 'string',
