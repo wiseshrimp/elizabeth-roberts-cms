@@ -52,6 +52,8 @@ export const PreviewPublishedAction: DocumentActionComponent = (props) => {
         url = `${base}/objects/${props.published?.slug?.current}`
       } else if (props.type === 'project') {
         url = `${base}/projects/${props.published?.slug?.current}`
+      } else if (props.type === 'jobPage') {
+        url = `${base}/jobs/${props.published?.slug?.current}`
       }
       window.open(url, '_blank', 'noopener,noreferrer')
       props.onComplete()
