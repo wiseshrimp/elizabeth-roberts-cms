@@ -45,8 +45,12 @@ export const PreviewPublishedAction: DocumentActionComponent = (props) => {
     icon: EarthGlobeIcon,
     title: 'Open the published version on the production site',
     onHandle: () => {
+      console.log(props)
       const entry = SLUGS[props.type as keyof typeof SLUGS]
-      const url = `${base}/${entry?.type}`
+      let url = `${base}/${entry?.type}`
+      if (props.type === 'objectItem') {
+        url = `${base}/objects/${props.published?.slug?.current}`
+      }
       window.open(url, '_blank', 'noopener,noreferrer')
       props.onComplete()
     },
