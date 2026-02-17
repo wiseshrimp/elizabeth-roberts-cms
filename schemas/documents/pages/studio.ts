@@ -1,141 +1,145 @@
 const studioPage = {
-    type: 'object',
-    name: 'studioPage',
-    fields: [
+  type: 'object',
+  name: 'studioPage',
+  fields: [
+    {
+      type: 'customImage',
+      name: 'mainImage',
+    },
+    {
+      type: 'file',
+      name: 'mainVideo',
+      description: 'Uploading a video will replace the main image.',
+    },
+    {
+      type: 'string',
+      name: 'title',
+    },
+    {
+      type: 'textEditor',
+      name: 'description',
+    },
+    {
+      type: 'object',
+      name: 'team',
+      options: {
+        collapsible: true,
+        collapsed: true,
+      },
+      fields: [
         {
-            type: 'customImage',
-            name: 'mainImage'
+          type: 'string',
+          name: 'header',
         },
         {
-            type: 'file',
-            name: 'mainVideo',
-            description: 'Uploading a video will replace the main image.'
-        },
-        {
-            type: 'string',
-            name: 'title'
-        },
-        {
-            type: 'textEditor',
-            name: 'description'
-        },
-        {
-            type: 'object',
-            name: 'team',
-            options: {
-                collapsible: true,
-                collapsed: true
+          type: 'array',
+          name: 'mainTeam',
+          of: [
+            {
+              type: 'object',
+              name: 'employee',
+              fields: [
+                {
+                  type: 'string',
+                  name: 'employeeName',
+                },
+                {
+                  type: 'customImage',
+                  name: 'employeeImage',
+                },
+                {
+                  type: 'textEditor',
+                  name: 'bio',
+                },
+              ],
             },
-            fields: [
-                {
-                    type: 'string',
-                    name: 'header'
-                },
-                {
-                    type: 'array',
-                    name: 'mainTeam',
-                    of: [
-                        {
-                            type: 'object',
-                            name: 'employee',
-                            fields: [
-                                {
-                                    type: 'string',
-                                    name: 'employeeName'
-                                },
-                                {
-                                    type: 'customImage',
-                                    name: 'employeeImage'
-                                },
-                                {
-                                    type: 'textEditor',
-                                    name: 'bio'
-                                }
-                            ]
-                        },
-                    ]
-                },
-                {
-                    type: 'object',
-                    name: 'otherTeamMembers',
-                    fields: [
-                        {
-                            type: 'array',
-                            name: 'employees',
-                            of: [
-                                {
-                                    type: 'object',
-                                    name: 'employee',
-                                    fields:
-                                        [
-                                            {
-                                                type: 'string',
-                                                name: 'name'
-                                            },
-                                            {
-                                                type: 'customImage',
-                                                name: 'employeeImage'
-                                            }
-                                        ]
-                                }
-                            ]
-                        },
-                        {
-                            type: 'boolean',
-                            name: 'hideEmployeeImages'
-                        }
-                    ]
-                }
-            ]
+          ],
         },
         {
-            name: 'studioImageGallery',
-            title: 'Image Gallery',
-            type: 'array',
-            of: [
+          type: 'object',
+          name: 'otherTeamMembers',
+          fields: [
+            {
+              type: 'array',
+              name: 'employees',
+              of: [
                 {
-                    type: 'customImage',
-                    name: 'studioImage'
-                }
-            ]
+                  type: 'object',
+                  name: 'employee',
+                  fields: [
+                    {
+                      type: 'string',
+                      name: 'name',
+                    },
+                    {
+                      type: 'customImage',
+                      name: 'employeeImage',
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              type: 'boolean',
+              name: 'hideEmployeeImages',
+            },
+          ],
         },
+      ],
+    },
+    {
+      name: 'studioImageGallery',
+      title: 'Image Gallery',
+      type: 'array',
+      of: [
         {
-            name: 'press',
-            type: 'array',
-            of: [
-                {
-                    type: 'object',
-                    name: 'pressItem',
-                    fields: [
-                        {
-                            type: 'image',
-                            name: 'logo'
-                        },
-                        {
-                            type: 'textEditor',
-                            name: 'text'
-                        },
-                        {
-                            type: 'url',
-                            name: 'link'
-                        }
-                    ],
-                    preview: {
-                        select: {
-                            image: 'logo'
-                        },
-                        prepare: (preview: any) => {
-                            return {
-                                title: 'Press',
-                                media: preview.image
-                            }
-                        }
-                    }
-
-                }
-            ],
-        }
-    ]
+          type: 'customImage',
+          name: 'studioImage',
+        },
+      ],
+    },
+    {
+      name: 'press',
+      type: 'array',
+      of: [
+        {
+          type: 'object',
+          name: 'pressItem',
+          fields: [
+            {
+              type: 'image',
+              name: 'logo',
+            },
+            {
+              type: 'number',
+              name: 'scale',
+              description: 'Scale the logo up or down. 1 is default.',
+            },
+            {
+              type: 'textEditor',
+              name: 'text',
+            },
+            {
+              type: 'url',
+              name: 'link',
+            },
+          ],
+          preview: {
+            select: {
+              image: 'logo',
+              title: 'text',
+            },
+            prepare: (preview: any) => {
+              return {
+                title: 'Press',
+                media: preview.image,
+              }
+            },
+          },
+        },
+      ],
+    },
+  ],
 }
 
 export default studioPage

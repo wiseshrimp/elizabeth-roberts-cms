@@ -1,4 +1,4 @@
-import { defineType, defineField } from 'sanity'
+import {defineType, defineField} from 'sanity'
 import TagInput from '../../components/TagInput'
 import slug from '../reusables/slug'
 
@@ -15,32 +15,32 @@ const project = defineType({
     {
       name: 'mainImage',
       title: 'Main Image',
-      type: 'customImage'
+      type: 'customImage',
     },
     slug,
     {
       name: 'projectType',
-  title: 'Project Type',
-  type: 'array',
-  of: [{ type: 'string' }],
-  options: {
-    // Provide allowed values; Studio renders them as a multi-select checklist
-    list: [
-      {title: 'Residential', value: 'residential'},
-      {title: 'Cultural', value: 'cultural'},
-      {title: 'Commercial', value: 'commercial'},
-      {title: 'New Build', value: 'new-build'},
-    ],
-    layout: 'grid', // checklist UI (use 'tags' if you prefer tag chips)
+      title: 'Project Type',
+      type: 'array',
+      of: [{type: 'string'}],
+      options: {
+        // Provide allowed values; Studio renders them as a multi-select checklist
+        list: [
+          {title: 'Residential', value: 'residential'},
+          {title: 'Cultural', value: 'cultural'},
+          {title: 'Commercial', value: 'commercial'},
+          {title: 'New Build', value: 'new-build'},
+        ],
+        layout: 'grid', // checklist UI (use 'tags' if you prefer tag chips)
+      },
     },
-  },
     {
       name: 'tags',
       title: 'Tags',
       type: 'tags',
       options: {
-        includeFromRelated: 'tags'
-      }
+        includeFromRelated: 'tags',
+      },
     },
     {
       name: 'year',
@@ -52,21 +52,31 @@ const project = defineType({
     },
     {
       name: 'description',
-      type: 'textEditor'
+      type: 'textEditor',
     },
     {
       name: 'snippet',
       description: 'Short description for project that appears on the Projects page',
-      type: 'string'
+      type: 'string',
+    },
+    {
+      type: 'string',
+      name: 'orderRank',
+      hidden: true,
     },
     {
       name: 'gallery',
       type: 'array',
       of: [
         {
-            type: 'customImage',
-            name: 'oneImage',
-            title: 'One Image (Full Width)',
+          type: 'customImage',
+          name: 'oneImage',
+          title: 'One Image (Full Width)',
+        },
+        {
+          type: 'customImage',
+          name: 'oneImageInset',
+          title: 'One Image (Inset)',
         },
         {
           type: 'object',
@@ -74,25 +84,25 @@ const project = defineType({
           fields: [
             {
               type: 'customImage',
-              name: 'firstImage'
+              name: 'firstImage',
             },
             {
               type: 'customImage',
-              name: 'secondImage'
+              name: 'secondImage',
             },
           ],
           preview: {
             select: {
               image: 'firstImage.image',
-              secondImage: 'secondImage.image'
+              secondImage: 'secondImage.image',
             },
             prepare: (data) => {
               return {
                 title: 'Two Images',
-                media: data.image ? data.image : data.secondImage
+                media: data.image ? data.image : data.secondImage,
               }
-            }
-          }
+            },
+          },
         },
         {
           type: 'file',
@@ -100,26 +110,26 @@ const project = defineType({
           preview: {
             prepare: () => {
               return {
-                title: 'Video'
+                title: 'Video',
               }
-            }
-          }
-        }
+            },
+          },
+        },
       ],
     },
   ],
   preview: {
     select: {
       title: 'title',
-      image: 'mainImage.image'
+      image: 'mainImage.image',
     },
     prepare: (preview) => {
       return {
         title: preview.title,
-        media: preview.image
+        media: preview.image,
       }
-    }
-  }
+    },
+  },
 })
 
 export default project

@@ -7,6 +7,18 @@ const pressItem = {
       name: 'company',
     },
     {
+      type: 'image',
+      name: 'logo',
+      options: {
+        hotspot: true,
+      },
+    },
+    {
+      type: 'number',
+      name: 'scale',
+      description: 'Scale the logo up or down. 1 is default.',
+    },
+    {
       type: 'string',
       name: 'titleOfArticle',
     },

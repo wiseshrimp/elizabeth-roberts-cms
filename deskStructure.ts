@@ -1,6 +1,7 @@
-import { StructureBuilder } from 'sanity/structure'
+import {StructureBuilder} from 'sanity/structure'
+import {orderableDocumentListDeskItem} from '@sanity/orderable-document-list'
 
-const deskStructure = (S: StructureBuilder) =>
+const deskStructure = (S: StructureBuilder, context: any) =>
   S.list()
     .title('Content')
     .items([
@@ -10,11 +11,11 @@ const deskStructure = (S: StructureBuilder) =>
         .title('Homepage')
         .icon(() => '🏠')
         .child(
-            S.editor()
-              .id('homepageLayout')
-              .title('Home')
-              .schemaType('homepageLayout')
-              .documentId('homepageLayout')
+          S.editor()
+            .id('homepageLayout')
+            .title('Home')
+            .schemaType('homepageLayout')
+            .documentId('homepageLayout'),
         ),
 
       // Projects
@@ -26,49 +27,39 @@ const deskStructure = (S: StructureBuilder) =>
           S.list()
             .title('Projects')
             .id('Projects')
-            .items(
-              [
-                S.listItem()
-                  .title('Main Page')
-                  .showIcon(false)
-                  .child(
-                    S.editor()
-                      .title('Main Page')
-                      .id('ProjectsPage')
-                      .schemaType('projectsPage')
-                      .documentId('projectsPage')
-                  ),
-                S.listItem()
-                .title('Projects')
-                .id('Projects')
-                .showIcon(false)
-                .schemaType('project')
-                .child(
-                  S.documentTypeList('project')
-                    .title('Project')
-                ),
-                S.listItem()
-                .title('Settings')
-                .id('projectSettings')
+            .items([
+              S.listItem()
+                .title('Main Page')
                 .showIcon(false)
                 .child(
                   S.editor()
-                  .id('projectsSettings')
-                  .schemaType('projectsSettingsDocument')
-
-                )
-                // S.listItem()
-                //   .title('Archive')
-                //   .showIcon(false)
-                //   .child(
-                //     S.editor()
-                //       .title('Archive Page')
-                //       .id('ArchivePage')
-                //       .schemaType('archivePage')
-                //       .documentId('archivePage')
-                //   ),
-              ]
-            )
+                    .title('Main Page')
+                    .id('ProjectsPage')
+                    .schemaType('projectsPage')
+                    .documentId('projectsPage'),
+                ),
+              orderableDocumentListDeskItem({
+                type: 'project',
+                title: 'Projects',
+                S,
+                context,
+              }),
+              S.listItem()
+                .title('Settings')
+                .id('projectSettings')
+                .showIcon(false)
+                .child(S.editor().id('projectsSettings').schemaType('projectsSettingsDocument')),
+              // S.listItem()
+              //   .title('Archive')
+              //   .showIcon(false)
+              //   .child(
+              //     S.editor()
+              //       .title('Archive Page')
+              //       .id('ArchivePage')
+              //       .schemaType('archivePage')
+              //       .documentId('archivePage')
+              //   ),
+            ]),
         ),
       S.listItem()
         .id('Object')
@@ -79,70 +70,57 @@ const deskStructure = (S: StructureBuilder) =>
             .title('Objects')
             .id('Object')
             .showIcons(false)
-            .items(
-              [
-                S.listItem()
-                  .title('Main Page')
-                  .child(
-                    S.editor()
-                      .title('Main Page')
-                      .id('ObjectPage')
-                      .schemaType('objectPage')
-                      .documentId('objectPage')
-                  ),
-                S.listItem()
+            .items([
+              S.listItem()
+                .title('Main Page')
+                .child(
+                  S.editor()
+                    .title('Main Page')
+                    .id('ObjectPage')
+                    .schemaType('objectPage')
+                    .documentId('objectPage'),
+                ),
+              S.listItem()
                 .title('Objects')
                 .id('Objects')
                 .schemaType('objectItem')
-                .child(
-                  S.documentTypeList('objectItem')
-                    .title('Object')
-                )
-              ]
-            )
+                .child(S.documentTypeList('objectItem').title('Object')),
+            ]),
         ),
-        S.listItem()
-          .id('Contact')
-          .title('Contact')
-          .icon(() => '☎️')
-          .child(
-            S.editor()
-              .title('Contact')
-              .id('Contact')
-              .schemaType('contactPage')
-              .documentId('contactPage')
-          ),
-        S.listItem()
-          .id('Studio')
-          .title('Studio')
-          .icon(() => '👤')
+      S.listItem()
+        .id('Contact')
+        .title('Contact')
+        .icon(() => '☎️')
+        .child(
+          S.editor()
+            .title('Contact')
+            .id('Contact')
+            .schemaType('contactPage')
+            .documentId('contactPage'),
+        ),
+      S.listItem()
+        .id('Studio')
+        .title('Studio')
+        .icon(() => '👤')
 
-          .child(
-            S.list()
+        .child(
+          S.list()
             .title('Studio')
-            .items(
-              [
-                S.listItem()
-                  .id('studio')
-                  .title('Studio')
-                  .showIcon(false)
-                  .child(
-                  S.editor()
-                    .title('Studio')
-                    .schemaType('studioPage')
-                    .documentId('studioPage'),
+            .items([
+              S.listItem()
+                .id('studio')
+                .title('Studio')
+                .showIcon(false)
+                .child(
+                  S.editor().title('Studio').schemaType('studioPage').documentId('studioPage'),
                 ),
-                S.listItem()
-                  .id('Jobs')
-                  .title('Jobs')
-                  .showIcon(false)
-                  .child(
-                    S.documentTypeList('jobPage')
-                      .title('Jobs')
-                  )
-              ]
-            )
-          ),
+              S.listItem()
+                .id('Jobs')
+                .title('Jobs')
+                .showIcon(false)
+                .child(S.documentTypeList('jobPage').title('Jobs')),
+            ]),
+        ),
 
       // Settings
       S.listItem()
@@ -152,22 +130,20 @@ const deskStructure = (S: StructureBuilder) =>
         .child(
           S.list()
             .title('Settings')
-            .items(
-              [
-                S.listItem()
-                  .id('Navigation')
-                  .title('Navigation')
-                  .showIcon(false)
-                  .child(
-                    S.editor()
-                      .title('Navigation')
-                      .id('navigation')
-                      .schemaType('navigation')
-                      .documentId('navigation')
-                  )
-              ]
-            )
-        )
+            .items([
+              S.listItem()
+                .id('Navigation')
+                .title('Navigation')
+                .showIcon(false)
+                .child(
+                  S.editor()
+                    .title('Navigation')
+                    .id('navigation')
+                    .schemaType('navigation')
+                    .documentId('navigation'),
+                ),
+            ]),
+        ),
     ])
 
 export default deskStructure

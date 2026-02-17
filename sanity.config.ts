@@ -3,6 +3,7 @@ import './style/studio.scss'
 import {defineConfig} from 'sanity'
 import {structureTool} from 'sanity/structure'
 import {visionTool} from '@sanity/vision'
+import {orderableDocumentListDeskItem} from '@sanity/orderable-document-list'
 import types from './schemas'
 import deskStructure from './deskStructure'
 import getPreviewUrl from './helpers/getPreviewUrl'
@@ -29,7 +30,7 @@ export default defineConfig({
     visionTool(),
     tags({}),
     structureTool({
-      structure: (S) => deskStructure(S) as any,
+      structure: (S, context) => deskStructure(S, context) as any,
     }),
   ],
 
