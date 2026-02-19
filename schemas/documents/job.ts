@@ -1,9 +1,11 @@
+import {orderRankField} from '@sanity/orderable-document-list'
 import slug from '../reusables/slug'
 
 const jobPage = {
   type: 'document',
   name: 'jobPage',
   fields: [
+    orderRankField({type: 'jobPage'}),
     {
       name: 'title',
       type: 'string',

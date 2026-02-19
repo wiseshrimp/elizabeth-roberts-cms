@@ -114,11 +114,12 @@ const deskStructure = (S: StructureBuilder, context: any) =>
                 .child(
                   S.editor().title('Studio').schemaType('studioPage').documentId('studioPage'),
                 ),
-              S.listItem()
-                .id('Jobs')
-                .title('Jobs')
-                .showIcon(false)
-                .child(S.documentTypeList('jobPage').title('Jobs')),
+              orderableDocumentListDeskItem({
+                type: 'jobPage',
+                title: 'Jobs',
+                S,
+                context,
+              }),
             ]),
         ),
 
