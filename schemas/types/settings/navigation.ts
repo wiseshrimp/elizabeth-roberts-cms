@@ -61,6 +61,24 @@ const navigation = {
     },
     {
       type: 'object',
+      name: 'settings',
+      fields: [
+        {
+          name: 'seeAllProjects',
+          type: 'string',
+          description:
+            'Text that appears underneath the selected projects, e.g. "See Gallery" that links to the /gallery page',
+        },
+        {
+          name: 'seeAllObjects',
+          type: 'string',
+          description:
+            'Text that appears underneath the selected objects, e.g. "See Gallery" that links to the /objects page',
+        },
+      ],
+    },
+    {
+      type: 'object',
       name: 'footerNavigation',
       fields: [
         {

@@ -1,4 +1,4 @@
-import { defineType, defineField } from 'sanity'
+import {defineType, defineField} from 'sanity'
 import TagInput from '../../components/TagInput'
 import slug from '../reusables/slug'
 
@@ -13,28 +13,36 @@ const objectItem = defineType({
       type: 'string',
     },
     {
+      name: 'fancyTitle',
+      title: 'Fancy Title',
+      type: 'textEditor',
+      description:
+        'Optional to add line breaks and will override the default title if added. Note that this title will only be formatted on the objects gallery page and its individual object page.',
+    },
+    {
       name: 'mainImage',
       title: 'Main Image',
-      type: 'customImage'
+      type: 'customImage',
     },
     slug,
     {
       name: 'shortDescription',
       type: 'textEditor',
-      description: 'Description that shows up in the objects gallery page. If left empty, description will default to the longer one below.'
+      description:
+        'Description that shows up in the objects gallery page. If left empty, description will default to the longer one below.',
     },
     {
       name: 'description',
-      type: 'textEditor'
+      type: 'textEditor',
     },
     {
       name: 'gallery',
       type: 'array',
       of: [
         {
-            type: 'customImage',
-            name: 'oneImage',
-            title: 'One Image (Full Width)',
+          type: 'customImage',
+          name: 'oneImage',
+          title: 'One Image (Full Width)',
         },
         {
           type: 'object',
@@ -42,25 +50,25 @@ const objectItem = defineType({
           fields: [
             {
               type: 'customImage',
-              name: 'firstImage'
+              name: 'firstImage',
             },
             {
               type: 'customImage',
-              name: 'secondImage'
+              name: 'secondImage',
             },
           ],
           preview: {
             select: {
               image: 'firstImage.image',
-              secondImage: 'secondImage.image'
+              secondImage: 'secondImage.image',
             },
             prepare: (data) => {
               return {
                 title: 'Two Images',
-                media: data.image ? data.image : data.secondImage
+                media: data.image ? data.image : data.secondImage,
               }
-            }
-          }
+            },
+          },
         },
       ],
     },
@@ -68,15 +76,15 @@ const objectItem = defineType({
   preview: {
     select: {
       title: 'title',
-      image: 'mainImage.image'
+      image: 'mainImage.image',
     },
     prepare: (preview) => {
       return {
         title: preview.title,
-        media: preview.image
+        media: preview.image,
       }
-    }
-  }
+    },
+  },
 })
 
 export default objectItem

@@ -13,6 +13,13 @@ const project = defineType({
       type: 'string',
     },
     {
+      name: 'fancyTitle',
+      title: 'Fancy Title',
+      type: 'textEditor',
+      description:
+        'Optional to add line breaks and will override the default title if added. Note that this title will only be formatted on the "Selected Projects" gallery page and its individual project page.',
+    },
+    {
       name: 'mainImage',
       title: 'Main Image',
       type: 'customImage',
