@@ -82,9 +82,22 @@ export const UnpublishAction: DocumentActionComponent = (props) => {
 
       if (confirmed) {
         try {
-          // Delete the published version (the document without the 'drafts.' prefix)
+          const draftId = `drafts.${props.id}`
+
+          // Check if a draft already exists
+          const existingDraft = await client.fetch(`*[_id == $draftId][0]`, {draftId})
+
+          // If no draft exists, create one from the published version before deleting
+          if (!existingDraft && props.published) {
+            const draftDoc = {
+              ...props.published,
+              _id: draftId,
+            }
+            await client.createOrReplace(draftDoc)
+          }
+
+          // Now delete the published version
           await client.delete(props.id)
-          // The draft version (drafts.{id}) will remain
         } catch (error: any) {
           console.error('Error unpublishing document:', error)
 
