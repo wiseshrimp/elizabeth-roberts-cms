@@ -60,6 +60,12 @@ const projectsSettings = {
         },
       ],
     },
+    {
+      name: 'isAlphabeticalOrder',
+      title: 'Alphabetical Order',
+      type: 'boolean',
+      description: 'Order projects alphabetically on the Projects List page.',
+    },
   ],
 }
 

@@ -85,9 +85,23 @@ export const UnpublishAction: DocumentActionComponent = (props) => {
           // Delete the published version (the document without the 'drafts.' prefix)
           await client.delete(props.id)
           // The draft version (drafts.{id}) will remain
-        } catch (error) {
+        } catch (error: any) {
           console.error('Error unpublishing document:', error)
-          alert('Failed to unpublish document. Please try again.')
+
+          // Check if the error is due to references
+          const errorMessage = error?.message || error?.toString() || ''
+          if (errorMessage.includes('references to it from')) {
+            // Extract the referring document type from the error message
+            const match = errorMessage.match(/references to it from "([^"]+)"/)
+            const referringDoc = match ? match[1] : 'another document'
+
+            alert(
+              `Cannot unpublish this document because it is referenced by "${referringDoc}".\n\n` +
+                `To unpublish this document, you must first remove the reference from "${referringDoc}".`,
+            )
+          } else {
+            alert('Failed to unpublish document. Please try again.')
+          }
         }
       }
     },

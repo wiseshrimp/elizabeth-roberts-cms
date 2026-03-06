@@ -109,6 +109,9 @@ const studioPage = {
             {
               type: 'image',
               name: 'logo',
+              options: {
+                hotspot: true,
+              },
             },
             {
               type: 'number',
@@ -138,6 +141,10 @@ const studioPage = {
           },
         },
       ],
+    },
+    {
+      name: 'jobsHeader',
+      type: 'string',
     },
   ],
 }

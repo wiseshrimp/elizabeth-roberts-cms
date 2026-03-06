@@ -45,6 +45,11 @@ const objectItem = defineType({
           title: 'One Image (Full Width)',
         },
         {
+          type: 'customImage',
+          name: 'oneImageInset',
+          title: 'One Image (Inset)',
+        },
+        {
           type: 'object',
           name: 'twoImages',
           fields: [
