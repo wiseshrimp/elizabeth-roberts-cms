@@ -107,6 +107,11 @@ const navigation = {
         },
       ],
     },
+    {
+      name: 'copyright',
+      type: 'string',
+      description: 'Text that appears in the footer, e.g. "© 2025 Elizabeth Roberts"',
+    },
   ],
 }
 
