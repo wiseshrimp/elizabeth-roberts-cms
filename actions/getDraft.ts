@@ -104,14 +104,29 @@ export const UnpublishAction: DocumentActionComponent = (props) => {
           // Check if the error is due to references
           const errorMessage = error?.message || error?.toString() || ''
           if (errorMessage.includes('references to it from')) {
-            // Extract the referring document type from the error message
+            // Extract the referring document ID from the error message
             const match = errorMessage.match(/references to it from "([^"]+)"/)
-            const referringDoc = match ? match[1] : 'another document'
+            const referringDocId = match ? match[1] : null
 
-            alert(
-              `Cannot unpublish this document because it is referenced by "${referringDoc}".\n\n` +
-                `To unpublish this document, you must first remove the reference from "${referringDoc}".`,
-            )
+            if (referringDocId) {
+              // Fetch the referring document to show more context
+              const referringDoc = await client.fetch(
+                `*[_id == $id][0]{ _id, _type, title, name }`,
+                { id: referringDocId }
+              )
+              const label = referringDoc?.title || referringDoc?.name || referringDocId
+              const type = referringDoc?._type ? ` (type: ${referringDoc._type})` : ''
+              alert(
+                `Cannot unpublish: this document is referenced by "${label}"${type}.\n\n` +
+                  `Document ID: ${referringDocId}\n\n` +
+                  `Open that document in the Studio, remove the reference, then try unpublishing again.`,
+              )
+            } else {
+              alert(
+                `Cannot unpublish this document because it is referenced by another document.\n\n` +
+                  `Remove the reference first, then try again.`,
+              )
+            }
           } else {
             alert('Failed to unpublish document. Please try again.')
           }

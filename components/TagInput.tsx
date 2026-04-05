@@ -1,23 +1,14 @@
-import React, { useState, useEffect, useMemo } from 'react'
-import {
-  Stack,
-  Card,
-  TextInput,
-  Flex,
-  Box,
-  Button,
-  Text,
-  Dialog,
-} from '@sanity/ui'
-import { SanityDocument, set } from 'sanity'
-import { useClient } from 'sanity'
-import { nanoid } from 'nanoid'
+import React, {useState, useEffect, useMemo} from 'react'
+import {Stack, Card, TextInput, Flex, Box, Button, Text, Dialog} from '@sanity/ui'
+import {SanityDocument, set} from 'sanity'
+import {useClient} from 'sanity'
+import {nanoid} from 'nanoid'
 import styles from '../style/TagInput.module.scss'
 
-export default function TagInput(props: {value: any, onChange: Function}) {
-  const { value = [], onChange } = props
+export default function TagInput(props: {value: any; onChange: Function}) {
+  const {value = [], onChange} = props
   const [input, setInput] = useState('')
-  const [allTags, setAllTags] : [SanityDocument | any, Function] = useState([])
+  const [allTags, setAllTags]: [SanityDocument | any, Function] = useState([])
   const [showDropdown, setShowDropdown] = useState(false)
   const [editing, setEditing] = useState(false)
   const client = useClient()
@@ -34,14 +25,14 @@ export default function TagInput(props: {value: any, onChange: Function}) {
     const search = input.trim().toLowerCase()
     return search
       ? allTags.filter(
-          (tag: {title: string, _id: string}) =>
+          (tag: {title: string; _id: string}) =>
             tag.title.toLowerCase().includes(search) &&
-            !value.some((v: {_ref: string}) => v._ref === tag._id)
+            !value.some((v: {_ref: string}) => v._ref === tag._id),
         )
       : []
   }, [input, allTags, value])
 
-  const handleAddTag = async (tag?: {_id: string, title: string}) => {
+  const handleAddTag = async (tag?: {_id: string; title: string}) => {
     let tagRef
     if (tag) {
       tagRef = {
@@ -53,8 +44,8 @@ export default function TagInput(props: {value: any, onChange: Function}) {
       const trimmed = input.trim()
       if (!trimmed) return
 
-      const existing : {_id: string, _type: string, title: string} = allTags.find(
-        (t: {title: string}) => t.title.toLowerCase() === trimmed.toLowerCase()
+      const existing: {_id: string; _type: string; title: string} = allTags.find(
+        (t: {title: string}) => t.title.toLowerCase() === trimmed.toLowerCase(),
       )!
 
       if (existing) {
@@ -99,10 +90,9 @@ export default function TagInput(props: {value: any, onChange: Function}) {
   // 🚨 Auto-unlink from all documents before deleting
   const handleDeleteTag = async (tagId: string) => {
     // Find all documents referencing this tag
-    const referringDocs = await client.fetch(
-      `*[_type != "tag" && references($tagId)]{_id}`,
-      { tagId }
-    )
+    const referringDocs = await client.fetch(`*[_type != "tag" && references($tagId)]{_id}`, {
+      tagId,
+    })
 
     for (const doc of referringDocs) {
       await client
@@ -119,7 +109,7 @@ export default function TagInput(props: {value: any, onChange: Function}) {
   return (
     <Stack className={styles.tag} space={3}>
       <Flex justify="space-between">
-        <Box style={{ position: 'relative', flex: 1 }}>
+        <Box style={{position: 'relative', flex: 1}}>
           <TextInput
             placeholder="Type to add a tag..."
             value={input}
@@ -147,15 +137,16 @@ export default function TagInput(props: {value: any, onChange: Function}) {
                 maxHeight: '200px',
                 overflowY: 'auto',
                 background: 'white',
+                color: 'black',
                 border: '1px solid #ccc',
                 borderTop: 'none',
               }}
             >
-              {filteredTags.map((tag: {_id: string, title: string}) => (
+              {filteredTags.map((tag: {_id: string; title: string}) => (
                 <Box
                   key={tag._id}
                   padding={2}
-                  style={{ cursor: 'pointer' }}
+                  style={{cursor: 'pointer'}}
                   className="option"
                   onClick={() => handleAddTag(tag)}
                   onMouseDown={(e) => e.preventDefault()}
@@ -168,7 +159,7 @@ export default function TagInput(props: {value: any, onChange: Function}) {
         </Box>
 
         <Button
-          style={{ marginLeft: '1rem' }}
+          style={{marginLeft: '1rem'}}
           onClick={() => setEditing(true)}
           tone="default"
           text="Edit Tags"
@@ -176,15 +167,11 @@ export default function TagInput(props: {value: any, onChange: Function}) {
       </Flex>
 
       <Flex wrap="wrap" gap={2}>
-        {(value || []).map((tagRef: {_ref: string, _key: string}) => (
-          <Card className='pill' key={tagRef._key} tone="primary" padding={2} radius={2} shadow={1}>
+        {(value || []).map((tagRef: {_ref: string; _key: string}) => (
+          <Card className="pill" key={tagRef._key} tone="primary" padding={2} radius={2} shadow={1}>
             <Flex align="center" gap={2}>
               <Text>{getTagTitle(tagRef._ref)}</Text>
-              <Button
-                tone="critical"
-                padding={1}
-                onClick={() => handleRemoveTag(tagRef._ref)}
-              >
+              <Button tone="critical" padding={1} onClick={() => handleRemoveTag(tagRef._ref)}>
                 ×
               </Button>
             </Flex>
@@ -201,14 +188,10 @@ export default function TagInput(props: {value: any, onChange: Function}) {
           onClose={() => setEditing(false)}
         >
           <Stack padding={4} space={3}>
-            {allTags.map((tag: {_id: string, title: string}) => (
+            {allTags.map((tag: {_id: string; title: string}) => (
               <Flex key={tag._id} justify="space-between" align="center">
                 <Text>{tag.title}</Text>
-                <Button
-                  tone="critical"
-                  text="Delete"
-                  onClick={() => handleDeleteTag(tag._id)}
-                />
+                <Button tone="critical" text="Delete" onClick={() => handleDeleteTag(tag._id)} />
               </Flex>
             ))}
           </Stack>

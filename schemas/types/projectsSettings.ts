@@ -21,6 +21,7 @@ const projectsSettings = {
     {
       name: 'showObjects',
       type: 'boolean',
+      hidden: true,
       description:
         'Show "objects" as a filter type on the navigation of the Archive and List view.',
     },
