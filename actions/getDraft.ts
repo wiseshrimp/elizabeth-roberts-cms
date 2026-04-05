@@ -9,8 +9,8 @@ export const PreviewDraftAction: DocumentActionComponent = (props) => {
   const hasDraft = !!props.draft
   const base =
     process.env.NODE_ENV == 'development'
-      ? 'http://localhost:3000'
-      : 'https://elizabethroberts.netlify.app'
+      ? 'http://localhost:3000/preview'
+      : 'https://elizabethroberts.netlify.app/preview'
 
   if (!hasDraft) {
     return null
@@ -112,7 +112,7 @@ export const UnpublishAction: DocumentActionComponent = (props) => {
               // Fetch the referring document to show more context
               const referringDoc = await client.fetch(
                 `*[_id == $id][0]{ _id, _type, title, name }`,
-                { id: referringDocId }
+                {id: referringDocId},
               )
               const label = referringDoc?.title || referringDoc?.name || referringDocId
               const type = referringDoc?._type ? ` (type: ${referringDoc._type})` : ''
