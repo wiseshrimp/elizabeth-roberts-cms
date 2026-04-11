@@ -1,6 +1,7 @@
 import {defineType, defineField} from 'sanity'
 import TagInput from '../../components/TagInput'
 import slug from '../reusables/slug'
+import PreviewImagesInput from '../../components/PreviewImagesInput'
 
 const project = defineType({
   name: 'project',
@@ -70,6 +71,14 @@ const project = defineType({
       type: 'string',
       name: 'orderRank',
       hidden: true,
+    },
+    {
+      name: 'previewImages',
+      title: 'Preview Images',
+      description: 'Images used for the preview hover effect on the projects page.',
+      type: 'array',
+      of: [{type: 'customImage'}],
+      components: {input: PreviewImagesInput},
     },
     {
       name: 'gallery',

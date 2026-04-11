@@ -48,7 +48,9 @@ export const PreviewPublishedAction: DocumentActionComponent = (props) => {
       console.log(props)
       const entry = SLUGS[props.type as keyof typeof SLUGS]
       let url = `${base}/${entry?.type}`
-      if (props.type === 'objectItem') {
+      if (props.type === 'homepageLayout') {
+        url = base
+      } else if (props.type === 'objectItem') {
         url = `${base}/objects/${props.published?.slug?.current}`
       } else if (props.type === 'project') {
         url = `${base}/projects/${props.published?.slug?.current}`
